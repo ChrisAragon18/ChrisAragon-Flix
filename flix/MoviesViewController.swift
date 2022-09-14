@@ -25,6 +25,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
+            
             // This will run when the network request returns
              if let error = error {
                  print(error.localizedDescription)
@@ -33,11 +34,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                  
                  self.movies = dataDictionary["results"] as! [[String:Any]]
                  self.tableView.reloadData()
+                 
                  // TODO: Get the array of movies
                  // TODO: Store the movies in a property to use elsewhere
                  // TODO: Reload your table view data
-                 
-
              }
         }
         task.resume()
